@@ -1,10 +1,8 @@
-package com.thetestingacademy.SVG;
+package com.thetestingacademy.SVG_Shadow_DOM;
 
 import io.qameta.allure.Description;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.PageLoadStrategy;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.annotations.AfterTest;

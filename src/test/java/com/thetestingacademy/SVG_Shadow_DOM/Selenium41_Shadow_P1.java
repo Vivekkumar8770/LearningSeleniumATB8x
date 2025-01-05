@@ -1,4 +1,4 @@
-package com.thetestingacademy.SVG;
+package com.thetestingacademy.SVG_Shadow_DOM;
 
 import io.qameta.allure.Description;
 import org.openqa.selenium.By;
@@ -10,9 +10,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
-public class Selenium39_SVG_P1 {
+public class Selenium41_Shadow_P1 {
     EdgeDriver driver;
 
     @BeforeTest
@@ -23,30 +21,17 @@ public class Selenium39_SVG_P1 {
         driver = new EdgeDriver(options);
     }
 
-
-    @Description("Verify that the after search, results are visible.")
+    @Description("Verify Shadow DOM")
     @Test
-    public void test_flipkart_search() {
+    public void test_shadow_dom() {
 
         driver.manage().window().maximize();
-        String URL = "https://www.flipkart.com/";
+        String URL = "https://selectorshub.com/xpath-practice-page/";
         driver.get(URL);
         driver.manage().window().maximize();
-
-        // Step 1 - Enter the "macnmini" in the inputbox.
-        driver.findElement(By.name("q")).sendKeys("macmini");
-
-
-        // Step 2 - Click on the svg element.
-        List<WebElement> svgElements = driver.findElements(By.xpath("//*[name()='svg']"));
-        svgElements.get(0).click();
-
-        List<WebElement> titlesResults = driver.findElements(By.xpath("//div[contains(@data-id,'CPU')]/div/a[2]"));
-        for (WebElement title : titlesResults) {
-            System.out.println(title.getText());
-        }
-
-
+        // local-name() , name()- Xpath (built in)
+        WebElement pizza = driver.findElement(By.xpath("//input[@id='pizza']"));
+        pizza.sendKeys("farmhouse");
     }
 
     @AfterTest

@@ -1,16 +1,15 @@
-package com.thetestingacademy.SVG;
+package com.thetestingacademy.SVG_Shadow_DOM;
 
 import io.qameta.allure.Description;
-import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.PageLoadStrategy;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class Selenium41_Shadow_P1 {
+public class Selenium42_JS_Demo_2 {
     EdgeDriver driver;
 
     @BeforeTest
@@ -21,17 +20,25 @@ public class Selenium41_Shadow_P1 {
         driver = new EdgeDriver(options);
     }
 
-    @Description("Verify Shadow DOM")
+
+    @Description("Verify JS")
     @Test
-    public void test_shadow_dom() {
+    public void test_js() throws InterruptedException {
 
         driver.manage().window().maximize();
         String URL = "https://selectorshub.com/xpath-practice-page/";
         driver.get(URL);
         driver.manage().window().maximize();
-        // local-name() , name()- Xpath (built in)
-        WebElement pizza = driver.findElement(By.xpath("//input[@id='pizza']"));
-        pizza.sendKeys("farmhouse");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+
+        js.executeScript("window.scrollBy(0, 500);");
+
+        String url = js.executeScript("return document.URL;").toString();
+        String title = js.executeScript("return document.title;").toString();
+
+        System.out.println(url);
+        System.out.println(title);
     }
 
     @AfterTest

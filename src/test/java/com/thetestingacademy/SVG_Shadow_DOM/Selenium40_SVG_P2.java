@@ -1,15 +1,18 @@
-package com.thetestingacademy.SVG;
+package com.thetestingacademy.SVG_Shadow_DOM;
 
 import io.qameta.allure.Description;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.By;
 import org.openqa.selenium.PageLoadStrategy;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class Selenium42_JS_Demo_2 {
+import java.util.List;
+
+public class Selenium40_SVG_P2 {
     EdgeDriver driver;
 
     @BeforeTest
@@ -21,24 +24,25 @@ public class Selenium42_JS_Demo_2 {
     }
 
 
-    @Description("Verify JS")
+    @Description("Verify that the tripura is in india and click on it.")
     @Test
-    public void test_js() throws InterruptedException {
+    public void test_svg_india_search_click() {
 
         driver.manage().window().maximize();
-        String URL = "https://selectorshub.com/xpath-practice-page/";
+        String URL = "https://www.amcharts.com/svg-maps/?map=india";
         driver.get(URL);
         driver.manage().window().maximize();
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        // local-name() , name()- Xpath (built in)
+        // document.querySelectorAll("#login-username"); - JS
+        List<WebElement> states = driver.findElements(By.xpath("//*[local-name()='svg']/*[local-name()='g'][7]/*[local-name()='g']/*[local-name()='g']/*[local-name()='path']"));
+        for (WebElement state : states) {
+            System.out.println(state.getAttribute("aria-label"));
+            if (state.getAttribute("aria-label").contains("Tripura")) {
+                state.click();
+            }
+        }
 
 
-        js.executeScript("window.scrollBy(0, 500);");
-
-        String url = js.executeScript("return document.URL;").toString();
-        String title = js.executeScript("return document.title;").toString();
-
-        System.out.println(url);
-        System.out.println(title);
     }
 
     @AfterTest

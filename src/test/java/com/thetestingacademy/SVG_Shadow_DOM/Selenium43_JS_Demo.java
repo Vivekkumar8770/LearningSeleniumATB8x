@@ -1,7 +1,8 @@
-package com.thetestingacademy.SVG;
+package com.thetestingacademy.SVG_Shadow_DOM;
 
 import io.qameta.allure.Description;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -10,9 +11,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
-public class Selenium40_SVG_P2 {
+public class Selenium43_JS_Demo {
     EdgeDriver driver;
 
     @BeforeTest
@@ -24,25 +23,24 @@ public class Selenium40_SVG_P2 {
     }
 
 
-    @Description("Verify that the tripura is in india and click on it.")
+    @Description("Verify JS")
     @Test
-    public void test_svg_india_search_click() {
+    public void test_js() throws InterruptedException {
 
         driver.manage().window().maximize();
-        String URL = "https://www.amcharts.com/svg-maps/?map=india";
+        String URL = "https://selectorshub.com/xpath-practice-page/";
         driver.get(URL);
         driver.manage().window().maximize();
-        // local-name() , name()- Xpath (built in)
-        // document.querySelectorAll("#login-username"); - JS
-        List<WebElement> states = driver.findElements(By.xpath("//*[local-name()='svg']/*[local-name()='g'][7]/*[local-name()='g']/*[local-name()='g']/*[local-name()='path']"));
-        for (WebElement state : states) {
-            System.out.println(state.getAttribute("aria-label"));
-            if (state.getAttribute("aria-label").contains("Tripura")) {
-                state.click();
-            }
-        }
+        JavascriptExecutor js = (JavascriptExecutor) driver;
 
 
+        WebElement div_to_scroll = driver.findElement(By.xpath("//div[@id='userName']"));
+        js.executeScript("arguments[0].scrollIntoView(true);", div_to_scroll);
+
+        Thread.sleep(3000);
+
+        WebElement inputboxPizza = (WebElement) js.executeScript("return document.querySelector(\"div#userName\").shadowRoot.querySelector(\"div#app2\").shadowRoot.querySelector(\"#pizza\");");
+        inputboxPizza.sendKeys("farmhouse");
     }
 
     @AfterTest

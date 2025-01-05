@@ -1,8 +1,7 @@
-package com.thetestingacademy.SVG;
+package com.thetestingacademy.SVG_Shadow_DOM;
 
 import io.qameta.allure.Description;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -11,7 +10,9 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class Selenium43_JS_Demo {
+import java.util.List;
+
+public class Selenium39_SVG_P1 {
     EdgeDriver driver;
 
     @BeforeTest
@@ -23,24 +24,29 @@ public class Selenium43_JS_Demo {
     }
 
 
-    @Description("Verify JS")
+    @Description("Verify that the after search, results are visible.")
     @Test
-    public void test_js() throws InterruptedException {
+    public void test_flipkart_search() {
 
         driver.manage().window().maximize();
-        String URL = "https://selectorshub.com/xpath-practice-page/";
+        String URL = "https://www.flipkart.com/";
         driver.get(URL);
         driver.manage().window().maximize();
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        // Step 1 - Enter the "macnmini" in the inputbox.
+        driver.findElement(By.name("q")).sendKeys("macmini");
 
 
-        WebElement div_to_scroll = driver.findElement(By.xpath("//div[@id='userName']"));
-        js.executeScript("arguments[0].scrollIntoView(true);", div_to_scroll);
+        // Step 2 - Click on the svg element.
+        List<WebElement> svgElements = driver.findElements(By.xpath("//*[name()='svg']"));
+        svgElements.get(0).click();
 
-        Thread.sleep(3000);
+        List<WebElement> titlesResults = driver.findElements(By.xpath("//div[contains(@data-id,'CPU')]/div/a[2]"));
+        for (WebElement title : titlesResults) {
+            System.out.println(title.getText());
+        }
 
-        WebElement inputboxPizza = (WebElement) js.executeScript("return document.querySelector(\"div#userName\").shadowRoot.querySelector(\"div#app2\").shadowRoot.querySelector(\"#pizza\");");
-        inputboxPizza.sendKeys("farmhouse");
+
     }
 
     @AfterTest
