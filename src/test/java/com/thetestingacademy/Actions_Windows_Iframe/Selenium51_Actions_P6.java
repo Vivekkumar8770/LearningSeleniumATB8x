@@ -1,18 +1,23 @@
-package com.thetestingacademy.SVG_Shadow_DOM;
+package com.thetestingacademy.Actions_Windows_Iframe;
 
 import io.qameta.allure.Description;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.Set;
 
-public class Selenium45_WebTables_Dynamic {
+public class Selenium51_Actions_P6 {
+
+
     EdgeDriver driver;
 
     @BeforeTest
@@ -24,31 +29,18 @@ public class Selenium45_WebTables_Dynamic {
     }
 
 
-    @Description("Verify Web Tables Dynamic")
+    @Description("Verify Heatmap(app.vwo.com")
     @Test
-    public void test_web_tables() throws InterruptedException {
+    public void test_heatmap_clickmap_button() throws InterruptedException {
 
-        driver.manage().window().maximize();
-        String URL = "https://awesomeqa.com/webtable1.html";
+        String URL = "https://www.makemytrip.com/";
         driver.get(URL);
         driver.manage().window().maximize();
+        Thread.sleep(5000);
 
-        // Find the xPath for the WebTable
-        // //table[@summary="Sample Table"]/tbody
-        // table[summary="Sample Table"] tbody
-
-        WebElement table = driver.findElement(By.xpath("//table[@summary='Sample Table']/tbody"));
-        // rows and columns
-        List<WebElement> rows_tables = table.findElements(By.tagName("tr"));
-        for (int i = 0; i < rows_tables.size(); i++) {
-            List<WebElement> col = rows_tables.get(i).findElements(By.tagName("td"));
-            for (WebElement c: col){
-                // If following, preceding... child parent.......
-
-
-                System.out.println(c.getText());
-            }
-        }
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).build().perform();
+        System.out.println("Scroll Down");
 
 
     }
@@ -62,4 +54,5 @@ public class Selenium45_WebTables_Dynamic {
         }
         driver.quit();
     }
+
 }

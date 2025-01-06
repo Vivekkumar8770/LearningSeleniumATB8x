@@ -1,4 +1,4 @@
-package com.thetestingacademy.SVG_Shadow_DOM;
+package com.thetestingacademy.WebTables;
 
 import io.qameta.allure.Description;
 import org.openqa.selenium.By;
