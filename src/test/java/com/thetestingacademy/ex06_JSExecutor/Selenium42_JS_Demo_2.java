@@ -1,17 +1,15 @@
-package com.thetestingacademy.SVG_Shadow_DOM;
+package com.thetestingacademy.ex06_JSExecutor;
 
 import io.qameta.allure.Description;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.PageLoadStrategy;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class Selenium43_JS_Demo {
+public class Selenium42_JS_Demo_2 {
     EdgeDriver driver;
 
     @BeforeTest
@@ -34,13 +32,13 @@ public class Selenium43_JS_Demo {
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
 
-        WebElement div_to_scroll = driver.findElement(By.xpath("//div[@id='userName']"));
-        js.executeScript("arguments[0].scrollIntoView(true);", div_to_scroll);
+        js.executeScript("window.scrollBy(0, 500);");
 
-        Thread.sleep(3000);
+        String url = js.executeScript("return document.URL;").toString();
+        String title = js.executeScript("return document.title;").toString();
 
-        WebElement inputboxPizza = (WebElement) js.executeScript("return document.querySelector(\"div#userName\").shadowRoot.querySelector(\"div#app2\").shadowRoot.querySelector(\"#pizza\");");
-        inputboxPizza.sendKeys("farmhouse");
+        System.out.println(url);
+        System.out.println(title);
     }
 
     @AfterTest
