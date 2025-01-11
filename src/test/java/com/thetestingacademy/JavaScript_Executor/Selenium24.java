@@ -1,4 +1,4 @@
-package com.thetestingacademy.ex06_JSExecutor;
+package com.thetestingacademy.JavaScript_Executor;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

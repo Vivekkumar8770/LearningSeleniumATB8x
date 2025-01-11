@@ -1,4 +1,4 @@
-package com.thetestingacademy.ex06_JSExecutor;
+package com.thetestingacademy.JavaScript_Executor;
 
 import io.qameta.allure.Description;
 import org.openqa.selenium.By;
