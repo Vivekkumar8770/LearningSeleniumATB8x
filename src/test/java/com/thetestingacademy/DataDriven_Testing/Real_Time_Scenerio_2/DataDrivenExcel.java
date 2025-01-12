@@ -1,4 +1,4 @@
-package com.thetestingacademy.DataDriven_Testing;
+package com.thetestingacademy.DataDriven_Testing.Real_Time_Scenerio_2;
 
 
 import org.testng.annotations.Test;
